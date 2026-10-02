@@ -41,20 +41,13 @@
   </script>
 
   <style>
-    .brand-logo-container svg {
+    .brand-logo-container svg, 
+    .brand-logo-container img {
       width: 100%;
       height: 100%;
       display: block;
-      shape-rendering: geometricPrecision;
-      text-rendering: geometricPrecision;
-    }
-
-    .crisp-img {
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
-      max-width: 100%;
-      max-height: 100%;
       object-fit: contain;
+      object-position: left center;
     }
 
     @keyframes pulse-ring {
@@ -125,11 +118,11 @@
 </head>
 <body class="bg-slate-950 font-sans antialiased text-slate-800 min-h-screen flex flex-col justify-between selection:bg-yellow-300 relative">
 
-  <!-- Control Panel -->
+  <!-- Panel de Control Interactivo -->
   <div class="fixed bottom-4 left-4 z-[9999] bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white p-4 rounded-2xl shadow-2xl max-w-xs w-full transition-all">
     <div class="flex items-center justify-between mb-3 border-b border-slate-800 pb-2">
       <span class="text-xs font-bold uppercase text-yellow-400 tracking-wider flex items-center gap-1.5">
-        <i class="fa-solid fa-sliders"></i> Live Control Panel
+        <i class="fa-solid fa-sliders"></i> Panel de Configuración
       </span>
       <button onclick="toggleControlPanel()" id="ctrlToggleBtn" class="text-xs text-slate-400 hover:text-white px-2 py-1 rounded bg-slate-800">
         <i class="fa-solid fa-chevron-down"></i>
@@ -139,33 +132,33 @@
       
       <div class="p-2.5 bg-slate-800/80 rounded-xl border border-yellow-500/40 space-y-2">
         <label class="block text-yellow-400 font-bold text-[11px] uppercase tracking-wide">
-          <i class="fa-solid fa-image mr-1"></i> Custom Brand Logo (HQ):
+          <i class="fa-solid fa-image mr-1"></i> Cargar Logo Personalizado:
         </label>
         <div>
-          <label class="block text-slate-400 text-[10px] mb-0.5">Image URL:</label>
-          <input type="text" id="inputLogoUrl" placeholder="https://example.com/logo.png" oninput="updateLiveContent()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-white text-[11px] focus:outline-none focus:border-yellow-400">
+          <label class="block text-slate-400 text-[10px] mb-0.5">URL de la imagen:</label>
+          <input type="text" id="inputLogoUrl" placeholder="https://ejemplo.com/logo.png" oninput="updateLiveContent()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-white text-[11px] focus:outline-none focus:border-yellow-400">
         </div>
         <div>
-          <label class="block text-slate-400 text-[10px] mb-0.5">Or Upload File:</label>
+          <label class="block text-slate-400 text-[10px] mb-0.5">O subir archivo:</label>
           <input type="file" id="inputLogoFile" accept="image/*" onchange="handleLogoUpload(event)" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-slate-300 text-[10px] file:mr-2 file:py-0.5 file:px-2 file:rounded file:border-0 file:text-[10px] file:bg-yellow-400 file:text-slate-900 font-medium cursor-pointer">
         </div>
         <div class="flex items-center justify-between pt-1 border-t border-slate-700/60">
-          <label class="text-slate-400 text-[10px]">Image Fit:</label>
+          <label class="text-slate-400 text-[10px]">Ajuste de imagen:</label>
           <select id="inputLogoFit" onchange="updateLiveContent()" class="bg-slate-900 border border-slate-700 text-white rounded px-1.5 py-0.5 text-[10px] focus:outline-none focus:border-yellow-400">
-            <option value="object-contain" selected>Fit (Contain)</option>
-            <option value="object-cover">Cover</option>
-            <option value="object-fill">Fill</option>
+            <option value="object-contain" selected>Fit (Contener)</option>
+            <option value="object-cover">Cover (Cubrir)</option>
+            <option value="object-fill">Fill (Rellenar)</option>
           </select>
         </div>
       </div>
 
       <div>
-        <label class="block text-slate-400 mb-1 font-medium">User ID Number:</label>
-        <input type="text" id="inputUserId" value="12584686" oninput="updateLiveContent()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-white focus:outline-none focus:border-yellow-400">
+        <label class="block text-slate-400 mb-1 font-medium">Número de ID de Usuario:</label>
+        <input type="text" id="inputUserId" value="225" oninput="updateLiveContent()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-white focus:outline-none focus:border-yellow-400">
       </div>
       <div>
         <label class="block text-slate-400 mb-1 font-medium">Puntos de Crédito (0-100):</label>
-        <input type="number" id="inputCreditPts" value="80" min="0" max="100" oninput="updateLiveContent()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-white focus:outline-none focus:border-yellow-400">
+        <input type="number" id="inputCreditPts" value="90" min="0" max="100" oninput="updateLiveContent()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-white focus:outline-none focus:border-yellow-400">
       </div>
       <div>
         <label class="block text-slate-400 mb-1 font-medium">Mínimo Requerido (Pts):</label>
@@ -174,18 +167,18 @@
     </div>
   </div>
 
-  <!-- Background Decorative Glows -->
+  <!-- Luces decorativas de fondo -->
   <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
     <div class="absolute -top-32 -right-32 w-[500px] h-[500px] bg-yellow-400/20 rounded-full blur-[120px]"></div>
     <div class="absolute top-1/2 -left-40 w-[500px] h-[500px] bg-blue-600/25 rounded-full blur-[120px]"></div>
     <div class="absolute -bottom-32 right-1/3 w-[400px] h-[400px] bg-rose-600/15 rounded-full blur-[100px]"></div>
   </div>
 
-  <!-- Main Header -->
+  <!-- Encabezado Principal -->
   <header class="bg-[#FFE600] border-b border-yellow-500/30 shadow-md relative z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       <div class="flex items-center gap-6">
-        <div id="navHeaderBrandArea" class="h-11 w-44 flex items-center cursor-pointer brand-logo-container">
+        <div id="navHeaderBrandArea" class="h-16 w-60 flex items-center cursor-pointer brand-logo-container">
         </div>
 
         <div class="hidden md:flex items-center bg-white/90 rounded-full px-4 py-2 w-80 text-xs text-slate-500 gap-2 border border-yellow-300/60 shadow-inner">
@@ -209,7 +202,7 @@
     </div>
   </header>
 
-  <!-- Main Content Area -->
+  <!-- Área de Contenido Principal -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full relative z-10">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
       <div>
@@ -227,25 +220,26 @@
     </div>
   </main>
 
-  <!-- Modal Popup -->
+  <!-- Ventana Modal Pop-up -->
   <div id="modalBackdrop" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/75 backdrop-blur-md">
-    <div class="modal-container bg-white w-full max-w-[530px] rounded-[28px] p-6 sm:p-8 shadow-glass border border-white/80 relative overflow-hidden">
+    <div class="modal-container bg-white w-full max-w-[560px] rounded-[28px] p-6 sm:p-8 shadow-glass border border-white/80 relative overflow-hidden">
       
       <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-yellow-400 via-rose-500 to-blue-600"></div>
 
-      <!-- Modal Header -->
+      <!-- Encabezado del Modal -->
       <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-100">
         
-        <div class="flex items-center gap-3 max-w-[80%]">
-          <div id="modalHeaderBrandArea" class="h-11 w-44 flex items-center justify-start overflow-hidden relative cursor-pointer brand-logo-container">
+        <div class="flex items-center gap-3 max-w-[85%]">
+          <!-- Logo Area -->
+          <div id="modalHeaderBrandArea" class="h-16 w-60 flex items-center justify-start overflow-hidden relative cursor-pointer brand-logo-container">
           </div>
 
-          <div class="h-6 w-[1.5px] bg-slate-200 flex-shrink-0"></div>
+          <!-- Vertical line removed here -->
 
           <div class="flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200 flex-shrink-0">
             <span class="relative flex h-2 w-2">
-              <span id="statusPing" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
-              <span id="statusDot" class="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
+              <span id="statusPing" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span id="statusDot" class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
             <span class="text-[11px] font-semibold text-slate-700 whitespace-nowrap">Notificación del sistema</span>
           </div>
@@ -256,46 +250,46 @@
         </button>
       </div>
 
-      <!-- Modal Alert Body -->
-      <div id="alertContainer" class="bg-gradient-to-br from-[#FFF5F5] to-[#FEE2E2] rounded-2xl p-5 sm:p-6 mb-6 border border-rose-300 relative overflow-hidden shadow-sm transition-all duration-300">
+      <!-- Cuerpo del Alerta en el Modal -->
+      <div id="alertContainer" class="bg-gradient-to-br from-[#F0FDF4] to-[#DCFCE7] rounded-2xl p-5 sm:p-6 mb-6 border border-emerald-200/80 relative overflow-hidden shadow-sm transition-all duration-300">
         <div class="flex items-start gap-4 sm:gap-5">
           <div class="flex-shrink-0">
-            <div id="alertIcon" class="w-13 h-13 sm:w-14 sm:h-14 bg-gradient-to-tr from-rose-600 to-red-500 rounded-full text-white flex items-center justify-center text-2xl font-black shadow-lg animate-pulse-halo">
-              <i class="fa-solid fa-triangle-exclamation"></i>
+            <div id="alertIcon" class="w-13 h-13 sm:w-14 sm:h-14 bg-gradient-to-tr from-emerald-600 to-green-500 rounded-full text-white flex items-center justify-center text-2xl font-black shadow-lg">
+              <i class="fa-solid fa-check"></i>
             </div>
           </div>
 
           <div class="space-y-2 pt-0.5">
             <div class="flex items-center gap-2">
-              <h2 id="alertTitle" class="text-rose-700 font-black text-lg sm:text-xl tracking-tight">Atención Requerida</h2>
-              <span id="alertBadge" class="bg-rose-200 text-rose-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">CRÍTICO</span>
+              <h2 id="alertTitle" class="text-emerald-700 font-black text-lg sm:text-xl tracking-tight">Estado Normal</h2>
+              <span id="alertBadge" class="bg-emerald-200/80 text-emerald-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">VERIFICADO</span>
             </div>
 
             <div class="text-xs font-bold text-slate-500 flex items-center gap-1.5">
               <span>ID:</span>
-              <span id="displayUserId" class="bg-slate-200/80 text-slate-800 px-2 py-0.5 rounded font-mono">12584686</span>
+              <span id="displayUserId" class="bg-slate-200/80 text-slate-800 px-2 py-0.5 rounded font-mono">225</span>
             </div>
 
-            <p id="displayAlertMsg" class="text-[#1B2056] font-extrabold text-sm sm:text-[15px] leading-snug">Sus puntos de crédito son bajos para liberar sus fondos</p>
-            <p id="displaySubMsg" class="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">Sus fondos se encuentran retenidos temporalmente hasta alcanzar el puntaje mínimo de crédito.</p>
+            <p id="displayAlertMsg" class="text-[#1B2056] font-extrabold text-sm sm:text-[15px] leading-snug">Sus fondos están disponibles para su retiro</p>
+            <p id="displaySubMsg" class="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">Sus fondos están disponibles para retiro sin ningún tipo de restricción.</p>
           </div>
         </div>
 
-        <div id="gaugeBorder" class="mt-5 pt-4 border-t border-rose-200/70">
+        <div id="gaugeBorder" class="mt-5 pt-4 border-t border-emerald-200/70">
           <div class="flex justify-between items-center text-xs font-bold mb-2">
             <span class="text-slate-700 flex items-center gap-1.5 font-bold">
-              <i id="gaugeIcon" class="fa-solid fa-gauge-high text-rose-600"></i> Puntos de Crédito Actuales
+              <i id="gaugeIcon" class="fa-solid fa-gauge-high text-emerald-600"></i> Puntos de Crédito Actuales
             </span>
             <div class="flex items-center gap-1.5">
-              <span id="creditBadge" class="text-rose-700 font-extrabold bg-rose-200/90 px-2.5 py-0.5 rounded-md text-[11px]">
-                <span class="display-credit">80</span> / 100
+              <span id="creditBadge" class="text-emerald-700 font-extrabold bg-emerald-200/90 px-2.5 py-0.5 rounded-md text-[11px]">
+                <span class="display-credit">90</span> / 100
               </span>
-              <span id="displayCreditStatus" class="text-rose-600 text-[11px] font-bold italic">(Insuficiente)</span>
+              <span id="displayCreditStatus" class="text-emerald-600 text-[11px] font-bold italic">(Óptimo)</span>
             </div>
           </div>
 
           <div class="relative w-full bg-slate-200/90 h-3 rounded-full overflow-hidden p-0.5 shadow-inner">
-            <div id="creditProgressBar" class="bg-gradient-to-r from-rose-500 to-red-600 h-full rounded-full w-[80%] transition-all duration-1000 shadow-sm relative">
+            <div id="creditProgressBar" class="bg-gradient-to-r from-emerald-500 to-green-400 h-full rounded-full w-[90%] transition-all duration-1000 shadow-sm relative">
               <div class="absolute right-0 top-0 bottom-0 w-2 bg-white/60 rounded-full animate-pulse"></div>
             </div>
           </div>
@@ -307,7 +301,7 @@
         </div>
       </div>
 
-      <!-- Footer Buttons -->
+      <!-- Botones del Pie de Página -->
       <div class="grid grid-cols-2 gap-3 sm:gap-4">
         <button onclick="closeModal()" class="w-full py-3.5 px-4 bg-white hover:bg-slate-100 border border-slate-300 rounded-2xl text-[#0066FF] font-extrabold text-sm transition-all duration-200 active:scale-[0.98] shadow-sm hover:border-slate-400 text-center flex items-center justify-center gap-2">
           <span>Cerrar</span>
@@ -351,7 +345,7 @@
     `;
 
     function updateLiveContent() {
-      // 1. Logo Update
+      // 1. Logo logic
       const urlInput = document.getElementById('inputLogoUrl').value.trim();
       const logoSrc = urlInput || customLogoSrc;
       const fitStyle = document.getElementById('inputLogoFit').value || 'object-contain';
@@ -360,7 +354,7 @@
       const navBrandArea = document.getElementById('navHeaderBrandArea');
 
       if (logoSrc) {
-        const fullImgHtml = `<img src="${logoSrc}" class="crisp-img ${fitStyle} w-full h-full" alt="Header Branding Logo">`;
+        const fullImgHtml = `<img src="${logoSrc}" class="w-full h-full ${fitStyle} object-left" alt="Logo de la marca">`;
         modalBrandArea.innerHTML = fullImgHtml;
         navBrandArea.innerHTML = fullImgHtml;
       } else {
@@ -368,11 +362,11 @@
         navBrandArea.innerHTML = defaultBrandSvg;
       }
 
-      // 2. User ID Update
-      const userIdVal = document.getElementById('inputUserId').value || '12584686';
+      // 2. User ID logic
+      const userIdVal = document.getElementById('inputUserId').value || '225';
       document.getElementById('displayUserId').textContent = userIdVal;
 
-      // 3. Credit Points Automatic Logic
+      // 3. Credit points logic
       const creditPts = parseInt(document.getElementById('inputCreditPts').value) || 0;
       const minRequired = parseInt(document.getElementById('inputMinRequiredPts').value) || 90;
 
@@ -399,9 +393,7 @@
       const gaugeIcon = document.getElementById('gaugeIcon');
       const gaugeBorder = document.getElementById('gaugeBorder');
 
-      // Automatic Text & UI Dynamic Switch
       if (creditPts < minRequired) {
-        // --- BELOW MINIMUM REQUIRED (RED ALERT STATE) ---
         displayAlertMsg.textContent = "Sus puntos de crédito son bajos para liberar sus fondos";
         displaySubMsg.textContent = "Sus fondos se encuentran retenidos temporalmente hasta alcanzar el puntaje mínimo de crédito.";
 
@@ -427,7 +419,6 @@
 
         progressBar.className = "bg-gradient-to-r from-rose-500 to-red-600 h-full rounded-full transition-all duration-1000 shadow-sm relative";
       } else {
-        // --- PASSED REQUIREMENT (GREEN NORMAL STATE) ---
         displayAlertMsg.textContent = "Sus fondos están disponibles para su retiro";
         displaySubMsg.textContent = "Sus fondos están disponibles para retiro sin ningún tipo de restricción.";
 
