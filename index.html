@@ -222,79 +222,71 @@
 
   <!-- Ventana Modal Pop-up -->
   <div id="modalBackdrop" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/75 backdrop-blur-md">
-    <div class="modal-container bg-white w-full max-w-[560px] rounded-[28px] p-6 sm:p-8 shadow-glass border border-white/80 relative overflow-hidden">
+    <div class="modal-container bg-white w-full max-w-[480px] rounded-[24px] p-4 sm:p-5 shadow-glass border border-white/80 relative overflow-hidden">
       
       <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-yellow-400 via-rose-500 to-blue-600"></div>
 
-      <!-- Encabezado del Modal -->
-      <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-100">
-        
-        <div class="flex items-center gap-3 max-w-[85%]">
-          <!-- Logo Area -->
-          <div id="modalHeaderBrandArea" class="h-16 w-60 flex items-center justify-start overflow-hidden relative cursor-pointer brand-logo-container">
-          </div>
-
-          <!-- Vertical line removed here -->
-
-          <div class="flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200 flex-shrink-0">
-            <span class="relative flex h-2 w-2">
-              <span id="statusPing" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span id="statusDot" class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span class="text-[11px] font-semibold text-slate-700 whitespace-nowrap">Notificación del sistema</span>
-          </div>
+      <!-- Encabezado del Modal (Notificación del sistema ကို ညာဘက်ထောင့်စွန်းသို့ ကပ်ထားပြီး အမှားခြစ် ခလုတ်ကို ဖျက်ထားပါသည်) -->
+      <div class="flex items-center justify-between pt-2 pb-2 mb-3 border-b border-slate-100">
+        <!-- Logo Area -->
+        <div id="modalHeaderBrandArea" class="h-10 w-44 flex items-center justify-start overflow-hidden relative cursor-pointer brand-logo-container">
         </div>
 
-        <button onclick="closeModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-900 flex items-center justify-center transition-all active:scale-90 flex-shrink-0" title="Cerrar modal">
-          <i class="fa-solid fa-xmark text-lg"></i>
-        </button>
+        <!-- Notificación del sistema badge (Right-aligned) -->
+        <div class="flex items-center gap-1 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200 flex-shrink-0 ml-auto">
+          <span class="relative flex h-1.5 w-1.5">
+            <span id="statusPing" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span id="statusDot" class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+          </span>
+          <span class="text-[10px] font-semibold text-slate-700 whitespace-nowrap">Notificación del sistema</span>
+        </div>
       </div>
 
       <!-- Cuerpo del Alerta en el Modal -->
-      <div id="alertContainer" class="bg-gradient-to-br from-[#F0FDF4] to-[#DCFCE7] rounded-2xl p-5 sm:p-6 mb-6 border border-emerald-200/80 relative overflow-hidden shadow-sm transition-all duration-300">
-        <div class="flex items-start gap-4 sm:gap-5">
+      <div id="alertContainer" class="bg-gradient-to-br from-[#F0FDF4] to-[#DCFCE7] rounded-2xl p-4 mb-3 border border-emerald-200/80 relative overflow-hidden shadow-sm transition-all duration-300">
+        <div class="flex items-start gap-3 sm:gap-4">
           <div class="flex-shrink-0">
-            <div id="alertIcon" class="w-13 h-13 sm:w-14 sm:h-14 bg-gradient-to-tr from-emerald-600 to-green-500 rounded-full text-white flex items-center justify-center text-2xl font-black shadow-lg">
+            <div id="alertIcon" class="w-11 h-11 sm:w-12 sm:h-12 bg-gradient-to-tr from-emerald-600 to-green-500 rounded-full text-white flex items-center justify-center text-xl font-black shadow-lg">
               <i class="fa-solid fa-check"></i>
             </div>
           </div>
 
-          <div class="space-y-2 pt-0.5">
+          <div class="space-y-1.5 pt-0.5">
             <div class="flex items-center gap-2">
-              <h2 id="alertTitle" class="text-emerald-700 font-black text-lg sm:text-xl tracking-tight">Estado Normal</h2>
-              <span id="alertBadge" class="bg-emerald-200/80 text-emerald-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">VERIFICADO</span>
+              <h2 id="alertTitle" class="text-emerald-700 font-black text-base sm:text-lg tracking-tight">Estado Normal</h2>
+              <span id="alertBadge" class="bg-emerald-200/80 text-emerald-800 text-[9px] font-extrabold px-1.5 py-0.5 rounded-full uppercase tracking-wider">VERIFICADO</span>
             </div>
 
-            <div class="text-xs font-bold text-slate-500 flex items-center gap-1.5">
+            <div class="text-[11px] font-bold text-slate-500 flex items-center gap-1.5">
               <span>ID:</span>
-              <span id="displayUserId" class="bg-slate-200/80 text-slate-800 px-2 py-0.5 rounded font-mono">225</span>
+              <span id="displayUserId" class="bg-slate-200/80 text-slate-800 px-1.5 py-0.5 rounded font-mono">225</span>
             </div>
 
-            <p id="displayAlertMsg" class="text-[#1B2056] font-extrabold text-sm sm:text-[15px] leading-snug">Sus fondos están disponibles para su retiro</p>
-            <p id="displaySubMsg" class="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">Sus fondos están disponibles para retiro sin ningún tipo de restricción.</p>
+            <p id="displayAlertMsg" class="text-[#1B2056] font-extrabold text-xs sm:text-sm leading-snug">Sus fondos están disponibles para su retiro</p>
+            <p id="displaySubMsg" class="text-slate-600 text-[11px] sm:text-xs leading-relaxed font-normal">Sus fondos están disponibles para retiro sin ningún tipo de restricción.</p>
           </div>
         </div>
 
-        <div id="gaugeBorder" class="mt-5 pt-4 border-t border-emerald-200/70">
-          <div class="flex justify-between items-center text-xs font-bold mb-2">
+        <div id="gaugeBorder" class="mt-4 pt-3 border-t border-emerald-200/70">
+          <div class="flex justify-between items-center text-[11px] font-bold mb-1.5">
             <span class="text-slate-700 flex items-center gap-1.5 font-bold">
               <i id="gaugeIcon" class="fa-solid fa-gauge-high text-emerald-600"></i> Puntos de Crédito Actuales
             </span>
-            <div class="flex items-center gap-1.5">
-              <span id="creditBadge" class="text-emerald-700 font-extrabold bg-emerald-200/90 px-2.5 py-0.5 rounded-md text-[11px]">
+            <div class="flex items-center gap-1">
+              <span id="creditBadge" class="text-emerald-700 font-extrabold bg-emerald-200/90 px-2 py-0.5 rounded-md text-[10px]">
                 <span class="display-credit">90</span> / 100
               </span>
-              <span id="displayCreditStatus" class="text-emerald-600 text-[11px] font-bold italic">(Óptimo)</span>
+              <span id="displayCreditStatus" class="text-emerald-600 text-[10px] font-bold italic">(Óptimo)</span>
             </div>
           </div>
 
-          <div class="relative w-full bg-slate-200/90 h-3 rounded-full overflow-hidden p-0.5 shadow-inner">
+          <div class="relative w-full bg-slate-200/90 h-2.5 rounded-full overflow-hidden p-0.5 shadow-inner">
             <div id="creditProgressBar" class="bg-gradient-to-r from-emerald-500 to-green-400 h-full rounded-full w-[90%] transition-all duration-1000 shadow-sm relative">
               <div class="absolute right-0 top-0 bottom-0 w-2 bg-white/60 rounded-full animate-pulse"></div>
             </div>
           </div>
           
-          <div class="flex justify-between items-center text-[10px] text-slate-500 font-medium mt-1.5">
+          <div class="flex justify-between items-center text-[9px] text-slate-500 font-medium mt-1">
             <span id="displayMinRequired">Mínimo requerido: 90 ptos.</span>
             <span>Máximo: 100 ptos.</span>
           </div>
@@ -302,13 +294,13 @@
       </div>
 
       <!-- Botones del Pie de Página -->
-      <div class="grid grid-cols-2 gap-3 sm:gap-4">
-        <button onclick="closeModal()" class="w-full py-3.5 px-4 bg-white hover:bg-slate-100 border border-slate-300 rounded-2xl text-[#0066FF] font-extrabold text-sm transition-all duration-200 active:scale-[0.98] shadow-sm hover:border-slate-400 text-center flex items-center justify-center gap-2">
+      <div class="grid grid-cols-2 gap-2.5 mt-1">
+        <button onclick="closeModal()" class="w-full py-2.5 px-3 bg-white hover:bg-slate-100 border border-slate-300 rounded-xl text-[#0066FF] font-extrabold text-xs transition-all duration-200 active:scale-[0.98] shadow-sm hover:border-slate-400 text-center flex items-center justify-center gap-1.5">
           <span>Cerrar</span>
         </button>
 
-        <button onclick="openSupportDrawer()" class="shiny-hover w-full py-3.5 px-4 bg-gradient-to-r from-[#0066FF] to-[#0052CC] hover:from-blue-500 hover:to-blue-700 text-white font-extrabold text-sm rounded-2xl transition-all duration-200 active:scale-[0.98] shadow-glow-blue flex items-center justify-center gap-2.5">
-          <i class="fa-solid fa-headset"></i>
+        <button onclick="openSupportDrawer()" class="shiny-hover w-full py-2.5 px-3 bg-gradient-to-r from-[#0066FF] to-[#0052CC] hover:from-blue-500 hover:to-blue-700 text-white font-extrabold text-xs rounded-xl transition-all duration-200 active:scale-[0.98] shadow-glow-blue flex items-center justify-center gap-2">
+          <i class="fa-solid fa-headset text-xs"></i>
           <span>Contactar soporte</span>
         </button>
       </div>
@@ -397,50 +389,50 @@
         displayAlertMsg.textContent = "Sus puntos de crédito son bajos para liberar sus fondos";
         displaySubMsg.textContent = "Sus fondos se encuentran retenidos temporalmente hasta alcanzar el puntaje mínimo de crédito.";
 
-        alertContainer.className = "bg-gradient-to-br from-[#FFF5F5] to-[#FEE2E2] rounded-2xl p-5 sm:p-6 mb-6 border border-rose-300 relative overflow-hidden shadow-sm transition-all duration-300";
-        alertIcon.className = "w-13 h-13 sm:w-14 sm:h-14 bg-gradient-to-tr from-rose-600 to-red-500 rounded-full text-white flex items-center justify-center text-2xl font-black shadow-lg animate-pulse-halo";
+        alertContainer.className = "bg-gradient-to-br from-[#FFF5F5] to-[#FEE2E2] rounded-2xl p-4 mb-3 border border-rose-300 relative overflow-hidden shadow-sm transition-all duration-300";
+        alertIcon.className = "w-11 h-11 sm:w-12 sm:h-12 bg-gradient-to-tr from-rose-600 to-red-500 rounded-full text-white flex items-center justify-center text-xl font-black shadow-lg animate-pulse-halo";
         alertIcon.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i>`;
 
         alertTitle.textContent = "Atención Requerida";
-        alertTitle.className = "text-rose-700 font-black text-lg sm:text-xl tracking-tight";
+        alertTitle.className = "text-rose-700 font-black text-base sm:text-lg tracking-tight";
 
         alertBadge.textContent = "CRÍTICO";
-        alertBadge.className = "bg-rose-200 text-rose-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider";
+        alertBadge.className = "bg-rose-200 text-rose-800 text-[9px] font-extrabold px-1.5 py-0.5 rounded-full uppercase tracking-wider";
 
         statusPing.className = "animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75";
-        statusDot.className = "relative inline-flex rounded-full h-2 w-2 bg-rose-500";
+        statusDot.className = "relative inline-flex rounded-full h-1.5 w-1.5 bg-rose-500";
 
-        creditBadge.className = "text-rose-700 font-extrabold bg-rose-200/90 px-2.5 py-0.5 rounded-md text-[11px]";
+        creditBadge.className = "text-rose-700 font-extrabold bg-rose-200/90 px-2 py-0.5 rounded-md text-[10px]";
         creditStatus.textContent = "(Insuficiente)";
-        creditStatus.className = "text-rose-600 text-[11px] font-bold italic";
+        creditStatus.className = "text-rose-600 text-[10px] font-bold italic";
 
         gaugeIcon.className = "fa-solid fa-gauge-high text-rose-600";
-        gaugeBorder.className = "mt-5 pt-4 border-t border-rose-200/70";
+        gaugeBorder.className = "mt-4 pt-3 border-t border-rose-200/70";
 
         progressBar.className = "bg-gradient-to-r from-rose-500 to-red-600 h-full rounded-full transition-all duration-1000 shadow-sm relative";
       } else {
         displayAlertMsg.textContent = "Sus fondos están disponibles para su retiro";
         displaySubMsg.textContent = "Sus fondos están disponibles para retiro sin ningún tipo de restricción.";
 
-        alertContainer.className = "bg-gradient-to-br from-[#F0FDF4] to-[#DCFCE7] rounded-2xl p-5 sm:p-6 mb-6 border border-emerald-200/80 relative overflow-hidden shadow-sm transition-all duration-300";
-        alertIcon.className = "w-13 h-13 sm:w-14 sm:h-14 bg-gradient-to-tr from-emerald-600 to-green-500 rounded-full text-white flex items-center justify-center text-2xl font-black shadow-lg";
+        alertContainer.className = "bg-gradient-to-br from-[#F0FDF4] to-[#DCFCE7] rounded-2xl p-4 mb-3 border border-emerald-200/80 relative overflow-hidden shadow-sm transition-all duration-300";
+        alertIcon.className = "w-11 h-11 sm:w-12 sm:h-12 bg-gradient-to-tr from-emerald-600 to-green-500 rounded-full text-white flex items-center justify-center text-xl font-black shadow-lg";
         alertIcon.innerHTML = `<i class="fa-solid fa-check"></i>`;
 
         alertTitle.textContent = "Estado Normal";
-        alertTitle.className = "text-emerald-700 font-black text-lg sm:text-xl tracking-tight";
+        alertTitle.className = "text-emerald-700 font-black text-base sm:text-lg tracking-tight";
 
         alertBadge.textContent = "VERIFICADO";
-        alertBadge.className = "bg-emerald-200/80 text-emerald-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider";
+        alertBadge.className = "bg-emerald-200/80 text-emerald-800 text-[9px] font-extrabold px-1.5 py-0.5 rounded-full uppercase tracking-wider";
 
         statusPing.className = "animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75";
-        statusDot.className = "relative inline-flex rounded-full h-2 w-2 bg-emerald-500";
+        statusDot.className = "relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500";
 
-        creditBadge.className = "text-emerald-700 font-extrabold bg-emerald-200/90 px-2.5 py-0.5 rounded-md text-[11px]";
+        creditBadge.className = "text-emerald-700 font-extrabold bg-emerald-200/90 px-2 py-0.5 rounded-md text-[10px]";
         creditStatus.textContent = "(Óptimo)";
-        creditStatus.className = "text-emerald-600 text-[11px] font-bold italic";
+        creditStatus.className = "text-emerald-600 text-[10px] font-bold italic";
 
         gaugeIcon.className = "fa-solid fa-gauge-high text-emerald-600";
-        gaugeBorder.className = "mt-5 pt-4 border-t border-emerald-200/70";
+        gaugeBorder.className = "mt-4 pt-3 border-t border-emerald-200/70";
 
         progressBar.className = "bg-gradient-to-r from-emerald-500 to-green-400 h-full rounded-full transition-all duration-1000 shadow-sm relative";
       }
